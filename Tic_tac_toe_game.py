@@ -12,7 +12,7 @@ def win(current_game):
     # horizontal
     for row in game:
         if all_same(row):
-            print("Player {} is the winner horizontally!".format(row[0]))
+            print("\nPlayer {} is the winner horizontally!".format(row[0]))
             return True
     
     # vertical
@@ -21,7 +21,7 @@ def win(current_game):
         for row in game:
             check.append(row[col])
         if all_same(check):
-            print("Player {} is the winner vertically!".format(check[0]))
+            print("\nPlayer {} is the winner vertically!".format(check[0]))
             return True
     
     # \ diagonal
@@ -45,7 +45,7 @@ def win(current_game):
 def game_board(game_map, player=0, row=0, column=0, just_display=False):
     try:
         if game_map[row][column] != 0:
-            print("This space is occupied, try another!")
+            print("This space is occupied, try another!\n")
             return False
         
         # print column numbers
@@ -57,7 +57,7 @@ def game_board(game_map, player=0, row=0, column=0, just_display=False):
             print(count, row)
         return game_map
     except IndexError:
-        print("Did you attempt to play a row or column outside the range of 0,1 or 2? (IndexError)")
+        print("Did you attempt to play a row or column outside the range of 0,1 or 2? (IndexError)\n")
         return False
     except Exception as e:
         print(str(e))
@@ -69,6 +69,7 @@ while play:
 
     # Loop Board Setup
     game_size = int(input("What size game TicTacToe? "))
+    print()
     game = [[0 for i in range(game_size)] for i in range(game_size)]
     
     game_won = False
@@ -78,9 +79,11 @@ while play:
         current_player = next(player_cycle)
         played = False
         while not played:
+            print()
             print("Player: {}".format(current_player))
             column_choice = int(input("Which column? "))
             row_choice = int(input("Which row? "))
+            print()
             played = game_board(game, player=current_player, row=row_choice, column=column_choice)
     
         if win(game):
@@ -92,5 +95,5 @@ while play:
                 print("Bye-bye!!")
                 play = False
             else:
-                print("Not a valid answer, well... thanks for playing!")
+                print("\nNot a valid answer, well... thanks for playing!\n")
                 play = False
